@@ -38,14 +38,12 @@
    font-size: 1.1rem;
    font-weight: bold;
    color: white;
-   background-color: #2979ff;
    border-radius: 8px;
    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
    transition: background-color 0.3s, box-shadow 0.3s;
    height: 4rem;
 
    &:hover {
-      background-color: #2962ff;
       box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
    }
 }

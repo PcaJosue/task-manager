@@ -1,12 +1,14 @@
 import { HttpClientTestingModule, HttpTestingController } from "@angular/common/http/testing";
 import { TestBed } from "@angular/core/testing";
 
+import { environment } from "../../environments/environment";
 import { Task } from "./models/task.model";
 import { TaskService } from "./task.service";
 
 describe("TaskService", () => {
     let service: TaskService;
     let httpTestingController: HttpTestingController;
+    const apiUrl = `${environment.apiUrl}tasks`;
 
     const mockTask: Task = {
         id: "123",
@@ -36,7 +38,7 @@ describe("TaskService", () => {
             expect(tasks).toEqual(mockTasks);
         });
 
-        const req = httpTestingController.expectOne("https://your-api-url.com/tasks");
+        const req = httpTestingController.expectOne(apiUrl);
         expect(req.request.method).toEqual("GET");
 
         req.flush(mockTasks);
@@ -47,7 +49,7 @@ describe("TaskService", () => {
             expect(task).toEqual(mockTask);
         });
 
-        const req = httpTestingController.expectOne("https://your-api-url.com/tasks");
+        const req = httpTestingController.expectOne(apiUrl);
         expect(req.request.method).toEqual("POST");
         expect(req.request.body).toEqual(mockTask);
 
@@ -61,7 +63,7 @@ describe("TaskService", () => {
             expect(task).toEqual(updatedTask);
         });
 
-        const req = httpTestingController.expectOne(`https://your-api-url.com/tasks/${updatedTask.id}`);
+        const req = httpTestingController.expectOne(`${apiUrl}/${updatedTask.id}`);
         expect(req.request.method).toEqual("PUT");
         expect(req.request.body).toEqual(updatedTask);
 
@@ -75,7 +77,7 @@ describe("TaskService", () => {
             expect(response).toBeNull();
         });
 
-        const req = httpTestingController.expectOne(`https://your-api-url.com/tasks/${taskId}`);
+        const req = httpTestingController.expectOne(`${apiUrl}/${taskId}`);
         expect(req.request.method).toEqual("DELETE");
 
         req.flush(null);

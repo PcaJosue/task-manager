@@ -2,7 +2,9 @@ import { Component } from "@angular/core";
 import { MatButtonModule } from "@angular/material/button";
 import { MatDialog } from "@angular/material/dialog";
 import { MatIconModule } from "@angular/material/icon";
+import { Router } from "@angular/router";
 
+import { AuthService } from "../../auth/auth.service";
 import { ConfirmationDialogComponent } from "../../shared/confirmation-dialog/confirmation-dialog.component";
 import { Task } from "../models/task.model";
 import { TaskService } from "../task.service";
@@ -19,7 +21,11 @@ import { TaskItemComponent } from "../task-item/task-item.component";
 export class TaskListComponent {
     tasks: Task[] = [];
 
-    constructor(private taskService: TaskService, private dialog: MatDialog) {
+    constructor(
+        private taskService: TaskService,
+        private dialog: MatDialog,
+        private router: Router
+    ) {
         this.loadTasks();
     }
 
@@ -33,11 +39,16 @@ export class TaskListComponent {
             data: task || null
         });
 
-        dialogRef.afterClosed().subscribe((result) => {
-            if (result) {
-                task ? this.updateTask(result) : this.addTask(result);
-            }
-        });
+        dialogRef.afterClosed()
+            .subscribe((result) => {
+                if (result) {
+                    if (task) {
+                        this.updateTask(result);
+                    } else {
+                        this.addTask(result);
+                    }
+                }
+            });
     }
 
     addTask(task: Task): void {
@@ -66,5 +77,10 @@ export class TaskListComponent {
     toggleComplete(task: Task): void {
         const updatedTask = { ...task, completed: !task.completed };
         this.updateTask(updatedTask);
+    }
+
+    logout() {
+        AuthService.logout();
+        this.router.navigate([""]);
     }
 }
