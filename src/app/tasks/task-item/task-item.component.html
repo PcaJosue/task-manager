@@ -1,0 +1,22 @@
+<mat-card class="task-card" [ngClass]="{'completed-task': task.completed}">
+   <mat-card-header class="task-header">
+      <mat-card-title>
+         <mat-icon class="task-icon">
+            {{ task.completed ? 'check_circle' : 'hourglass_empty' }}
+         </mat-icon>
+         <h3 class="task-title">{{ task.title }}</h3>
+      </mat-card-title>
+      <p class="creation-date">Created: {{ task.createdAt | date: 'mediumDate' }}</p>
+   </mat-card-header>
+   <mat-card-content>
+      <p class="task-description">{{ task.description || 'No description provided.' }}</p>
+   </mat-card-content>
+   <mat-card-actions align="end">
+      <button mat-icon-button color="primary" (click)="onEdit()" aria-label="Edit Task">
+         <mat-icon>edit</mat-icon>
+      </button>
+      <button mat-icon-button color="warn" (click)="onDelete()" aria-label="Delete Task">
+         <mat-icon>delete</mat-icon>
+      </button>
+   </mat-card-actions>
+</mat-card>

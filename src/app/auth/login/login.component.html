@@ -1,0 +1,21 @@
+<div class="login-container">
+    <mat-card>
+       <img ngSrc="assets/images/logo-atom-chat.png" width="192.5" height="55" alt="Atom Chat Logo" priority    />
+       <h2 class="login-title">Welcome Back</h2>
+       <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+          <mat-form-field appearance="fill" class="full-width">
+             <mat-label>Email</mat-label>
+             <input matInput formControlName="email" type="email" required />
+             @if(loginForm.get('email')?.invalid && loginForm.get('email')?.touched){
+                <mat-error>
+                   Please enter a valid email.
+                </mat-error>
+             }
+          </mat-form-field>
+          <button mat-raised-button color="primary" class="login-button" type="submit" [disabled]="loginForm.invalid">
+             Login
+          </button>
+       </form>
+    </mat-card>
+ </div>
+ 

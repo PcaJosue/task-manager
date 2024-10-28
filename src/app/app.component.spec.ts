@@ -15,16 +15,9 @@ describe("AppComponent", () => {
         expect(app).toBeTruthy();
     });
 
-    it("should have the 'atom-challenge-fe-template' title", () => {
+    it("should have the 'Task Manager' title", () => {
         const fixture = TestBed.createComponent(AppComponent);
         const app = fixture.componentInstance;
-        expect(app.title).toEqual("atom-challenge-fe-template");
-    });
-
-    it("should render title", () => {
-        const fixture = TestBed.createComponent(AppComponent);
-        fixture.detectChanges();
-        const compiled = fixture.nativeElement as HTMLElement;
-        expect(compiled.querySelector("h1")?.textContent).toContain("Hello, atom-challenge-fe-template");
+        expect(app.title).toEqual("Task Manager");
     });
 });

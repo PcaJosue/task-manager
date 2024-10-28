@@ -1,0 +1,30 @@
+<div class="signup-container">
+    <mat-card>
+       <img src="assets/images/logo-atom-chat.png"width="192.5" height="55" alt="Atom Chat Logo" />
+       <h2 class="signup-title">Create an Account</h2>
+       <form [formGroup]="signUpForm" (ngSubmit)="onSignUp()">
+          <mat-form-field appearance="fill" class="full-width">
+             <mat-label>Name</mat-label>
+             <input matInput formControlName="name" type="text" required />
+             @if(signUpForm.get('name')?.invalid && signUpForm.get('name')?.touched){
+                <mat-error>
+                   Name is required and must be at least 2 characters.
+                </mat-error>
+             }
+          </mat-form-field>
+          <mat-form-field appearance="fill" class="full-width">
+             <mat-label>Email</mat-label>
+             <input matInput formControlName="email" type="email" required />
+             @if(signUpForm.get('email')?.invalid && signUpForm.get('email')?.touched){
+                <mat-error>
+                   Please enter a valid email.
+                </mat-error>
+             }
+          </mat-form-field>
+          <button mat-raised-button color="primary" class="signup-button" type="submit" [disabled]="signUpForm.invalid">
+             Sign Up
+          </button>
+       </form>
+    </mat-card>
+ </div>
+ 

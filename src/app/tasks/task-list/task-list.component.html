@@ -1,0 +1,22 @@
+<div class="task-list-container">
+    <div class="task-list-content">
+        <h1 class="page-title">Task Manager</h1>
+        
+        <div class="tasks-wrapper">
+            @for(task of tasks; track task.id){
+                <app-task-item
+                   [task]="task"
+                   (edit)="openTaskForm(task)"
+                   (delete)="deleteTask($event)"
+                   (toggleComplete)="toggleComplete($event)">
+                </app-task-item>
+            }
+        </div>
+     
+        <button mat-raised-button color="primary" class="create-task-button" (click)="openTaskForm()" aria-label="Add Task">
+           Add New Task
+        </button>
+
+    </div>
+ </div>
+ 

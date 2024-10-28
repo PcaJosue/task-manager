@@ -1,0 +1,28 @@
+.task-form-container {
+    display: flex;
+    flex-direction: column;
+    padding: 16px;
+    max-width: 400px;
+ }
+ 
+ .full-width {
+    width: 100%;
+ }
+ 
+ .actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 16px;
+ }
+ 
+ @media (max-width: 600px) {
+    .task-form-container {
+       padding: 8px;
+    }
+ 
+    .actions {
+       flex-direction: column;
+       gap: 8px;
+    }
+ }
+ 
